@@ -159,10 +159,10 @@ class Configuration implements ConfigurationInterface
 
                         ->arrayNode('s3')
                             ->children()
+                                ->scalarNode('directory')->defaultValue('')->end()
                                 ->scalarNode('bucket')->isRequired()->end()
                                 ->scalarNode('accessKey')->isRequired()->end()
                                 ->scalarNode('secretKey')->isRequired()->end()
-                                ->scalarNode('password')->isRequired()->end()
                                 ->scalarNode('create')->defaultValue(false)->end()
                             ->end()
                         ->end()

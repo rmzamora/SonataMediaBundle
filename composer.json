@@ -1,8 +1,8 @@
 {
-    "name": "sonata-project/media-bundle",
+    "name": "rmzamora/media-bundle",
     "type": "symfony-bundle",
     "description": "Symfony SonataMediaBundle",
-    "keywords": ["media", "sonata", "youtube", "dailymotion", "vimeo", "pdf", "file", "upload"],
+    "keywords": ["media", "sonata", "youtube", "dailymotion", "vimeo", "pdf", "file", "upload","rmzamora forked"],
     "homepage": "http://sonata-project.org/bundles/media",
     "license": "MIT",
     "authors": [
@@ -11,6 +11,11 @@
             "email": "thomas.rabaix@sonata-project.org",
             "homepage": "http://sonata-project.org"
         },
+        {
+            "name": "mell zamora",
+            "email": "me@rmzamora.com",
+            "homepage": "http://rmzamora.com"
+        },         
         {
             "name": "Sonata Community",
             "homepage": "https://github.com/sonata-project/SonataMediaBundle/contributors"

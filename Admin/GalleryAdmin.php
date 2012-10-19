@@ -62,7 +62,7 @@ class GalleryAdmin extends Admin
             ->add('name')
             ->add('defaultFormat', 'choice', array('choices' => $formats))
             ->add('galleryHasMedias', 'sonata_type_collection', array(
-                'by_reference' => false
+                'by_reference' => true
             ), array(
                 'edit' => 'inline',
                 'inline' => 'table',

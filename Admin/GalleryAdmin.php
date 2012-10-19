@@ -17,6 +17,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\MediaBundle\Provider\Pool;
 use Sonata\AdminBundle\Validator\ErrorElement;
+use Doctrine\Common\Collections\Collection;
 
 class GalleryAdmin extends Admin
 {
@@ -62,12 +63,12 @@ class GalleryAdmin extends Admin
             ->add('name')
             ->add('defaultFormat', 'choice', array('choices' => $formats))
             ->add('galleryHasMedias', 'sonata_type_collection', array(
-                'by_reference' => true
+                'by_reference' => false
             ), array(
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable'  => 'position',
-                'link_parameters' => array('context' => $context)
+                'link_parameters' => array('context' => $context),
             ))
         ;
     }
@@ -148,4 +149,27 @@ class GalleryAdmin extends Admin
 
         return $gallery;
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($object)
+    {
+		parent::preUpdate($object);
+		$form = $this->getForm();
+		$children = $form->getChildren();
+		foreach ($children as $childForm) {
+		    $data = $childForm->getData();
+		    if ($data instanceof Collection) {
+		        $proxies = $childForm->getChildren();
+		        foreach ($proxies as $proxy) {
+		            $entity = $proxy->getData();
+		            if (!$data->contains($entity)) {
+		                $this->getModelManager()->delete($entity);
+		            }
+		        }
+		    }
+		}
+    }
+    
 }

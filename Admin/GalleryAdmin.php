@@ -17,7 +17,6 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\MediaBundle\Provider\Pool;
 use Sonata\AdminBundle\Validator\ErrorElement;
-use Doctrine\Common\Collections\Collection;
 
 class GalleryAdmin extends Admin
 {
@@ -53,23 +52,27 @@ class GalleryAdmin extends Admin
         }
 
         $contexts = array();
-        foreach((array)$this->pool->getContexts() as $context => $format) {
-            $contexts[$context] = $context;
+        foreach((array)$this->pool->getContexts() as $contextItem => $format) {
+            $contexts[$contextItem] = $contextItem;
         }
 
         $formMapper
-            ->add('context', 'choice', array('choices' => $contexts))
+            ->add('context', 'sonata_type_translatable_choice', array(
+                'choices' => $contexts,
+                'catalogue' => 'SonataMediaBundle'
+            ))
             ->add('enabled', null, array('required' => false))
             ->add('name')
             ->add('defaultFormat', 'choice', array('choices' => $formats))
             ->add('galleryHasMedias', 'sonata_type_collection', array(
-                'by_reference' => false
-            ), array(
-                'edit' => 'inline',
-                'inline' => 'table',
-                'sortable'  => 'position',
-                'link_parameters' => array('context' => $context),
-            ))
+                    'cascade_validation' => true,
+                ), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable'  => 'position',
+                    'link_parameters' => array('context' => $context),
+                )
+            )
         ;
     }
 
@@ -81,23 +84,9 @@ class GalleryAdmin extends Admin
         $listMapper
             ->add('enabled', null, array('editable' => true))
             ->addIdentifier('name')
-            ->add('context')
-            ->add('defaultFormat')
+            ->add('context', 'trans', array('catalogue' => 'SonataMediaBundle'))
+            ->add('defaultFormat', 'trans', array('catalogue' => 'SonataMediaBundle'))
         ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function validate(ErrorElement $errorElement, $gallery)
-    {
-        $formats = $this->pool->getFormatNamesByContext($gallery->getContext());
-
-        if (!array_key_exists($gallery->getDefaultFormat(), $formats)) {
-            $errorElement->with('defaultFormat')
-                ->addViolation('invalid format')
-            ->end();
-        }
     }
 
     /**
@@ -120,6 +109,18 @@ class GalleryAdmin extends Admin
         $parameters = $this->getPersistentParameters();
 
         $gallery->setContext($parameters['context']);
+
+        // fix weird bug with setter object not being call
+        $gallery->setGalleryHasMedias($gallery->getGalleryHasMedias());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($gallery)
+    {
+        // fix weird bug with setter object not being call
+        $gallery->setGalleryHasMedias($gallery->getGalleryHasMedias());
     }
 
     /**
@@ -149,27 +150,4 @@ class GalleryAdmin extends Admin
 
         return $gallery;
     }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function preUpdate($object)
-    {
-		parent::preUpdate($object);
-		$form = $this->getForm();
-		$children = $form->getChildren();
-		foreach ($children as $childForm) {
-		    $data = $childForm->getData();
-		    if ($data instanceof Collection) {
-		        $proxies = $childForm->getChildren();
-		        foreach ($proxies as $proxy) {
-		            $entity = $proxy->getData();
-		            if (!$data->contains($entity)) {
-		                $this->getModelManager()->delete($entity);
-		            }
-		        }
-		    }
-		}
-    }
-    
 }

@@ -12,10 +12,9 @@
 namespace Sonata\MediaBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\MediaBundle\Provider\Pool;
 use Sonata\MediaBundle\Form\DataTransformer\ProviderDataTransformer;
@@ -89,6 +88,9 @@ abstract class BaseMediaAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('view', $this->getRouterIdParameter() . '/view');
+        $collection->add('show', $this->getRouterIdParameter() . '/show', array(
+            '_controller' => sprintf('%s:%s', $this->baseControllerName, 'view')
+        ));
     }
 
     /**
@@ -144,7 +146,7 @@ abstract class BaseMediaAdmin extends Admin
     /**
      * {@inheritdoc}
      */
-    protected function configureSideMenu(MenuItemInterface $menu, $action, Admin $childAdmin = null)
+    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
     {
         if (!in_array($action, array('edit', 'view'))) {
             return;

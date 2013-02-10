@@ -22,7 +22,7 @@ Register the new bundle into your AppKernel:
 .. code-block:: php
 
   <?php
-  // app/appkernel.php
+  // app/AppKernel.php
   public function registerBundles()
   {
       return array(
@@ -48,6 +48,8 @@ Next, add the correct routing files:
 
 Then you must configure the interaction with the orm and add the mediaBundles settings:
 
+Doctrine ORM:
+
 .. code-block:: yaml
 
     # app/config/config.yml
@@ -59,9 +61,30 @@ Then you must configure the interaction with the orm and add the mediaBundles se
                     mappings:
                         SonataMediaBundle: ~
 
+        dbal:
+            types:
+                json: Sonata\Doctrine\Types\JsonType
+
+Doctrine PHPCR:
+
+.. code-block:: yaml
+
+    # app/config/config.yml
+
+    doctrine_phpcr:
+        odm:
+            auto_mapping: true
+            mappings:
+                SonataMediaBundle:
+                    prefix: Sonata\MediaBundle\PHPCR
+
+.. code-block:: yaml
+
+    # app/config/config.yml
+
     sonata_media:
         default_context: default
-        db_driver: doctrine_orm # or doctrine_mongodb
+        db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
         contexts:
             default:  # the default context is mandatory
                 providers:
@@ -131,8 +154,8 @@ Now that your module is generated, you can register it
 .. code-block:: php
 
     <?php
-    // app/appkernel.php
-    public function registerbundles()
+    // app/AppKernel.php
+    public function registerBundles()
     {
         return array(
             ...

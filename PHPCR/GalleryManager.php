@@ -8,40 +8,25 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Sonata\MediaBundle\Document\ODM;
+namespace Sonata\MediaBundle\PHPCR;
 
 use Sonata\MediaBundle\Model\GalleryManager as AbstractGalleryManager;
 use Sonata\MediaBundle\Model\GalleryInterface;
-use Sonata\MediaBundle\Provider\Pool;
-use Doctrine\ODM\MongoDB\DocumentManager;
-use Doctrine\ODM\MongoDB\DocumentRepository;
+use Sonata\DoctrinePHPCRAdminBundle\Model\ModelManager;
 
 class GalleryManager extends AbstractGalleryManager
 {
-    protected $dm;
-    protected $repository;
+    protected $modelManager;
     protected $class;
 
     /**
-     * @param \Doctrine\ODM\MongoDB\DocumentManager $dm
-     * @param string                                $class
+     * @param \Sonata\DoctrinePHPCRAdminBundle\Model\ModelManager $modelManager
+     * @param $class
      */
-    public function __construct(DocumentManager $dm, $class)
+    public function __construct(ModelManager $modelManager, $class)
     {
-        $this->dm    = $dm;
-        $this->class = $class;
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function getRepository()
-    {
-        if (!$this->repository) {
-            $this->repository = $this->dm->getRepository($this->class);
-        }
-
-        return $this->repository;
+        $this->modelManager = $modelManager;
+        $this->class        = $class;
     }
 
     /**

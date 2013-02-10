@@ -50,6 +50,7 @@ class SonataMediaExtension extends Extension
         $loader->load('extra.xml');
         $loader->load('form.xml');
         $loader->load('gaufrette.xml');
+        $loader->load('validators.xml');
 
         $bundles = $container->getParameter('kernel.bundles');
 
@@ -294,11 +295,14 @@ class SonataMediaExtension extends Extension
             $container->getDefinition('sonata.media.adapter.filesystem.ftp')
                 ->addArgument($config['filesystem']['ftp']['directory'])
                 ->addArgument($config['filesystem']['ftp']['host'])
-                ->addArgument($config['filesystem']['ftp']['username'])
-                ->addArgument($config['filesystem']['ftp']['password'])
-                ->addArgument($config['filesystem']['ftp']['port'])
-                ->addArgument($config['filesystem']['ftp']['passive'])
-                ->addArgument($config['filesystem']['ftp']['create'])
+                ->addArgument(array(
+                    'port' => $config['filesystem']['ftp']['port'],
+                    'username' => $config['filesystem']['ftp']['username'],
+                    'password' => $config['filesystem']['ftp']['password'],
+                    'passive' => $config['filesystem']['ftp']['passive'],
+                    'create' => $config['filesystem']['ftp']['create'],
+                    'mode' => $config['filesystem']['ftp']['mode']
+                ))
             ;
         } else {
             $container->removeDefinition('sonata.media.adapter.filesystem.ftp');
@@ -310,7 +314,7 @@ class SonataMediaExtension extends Extension
             $container->getDefinition('sonata.media.adapter.filesystem.s3')
                 ->replaceArgument(0, new Reference('sonata.media.adapter.service.s3'))
                 ->replaceArgument(1, $config['filesystem']['s3']['bucket'])
-                ->replaceArgument(2, $config['filesystem']['s3']['create'])
+                ->replaceArgument(2, array('create' => $config['filesystem']['s3']['create']))
                 ->addMethodCall('setDirectory', array($config['filesystem']['s3']['directory']));
             ;
 

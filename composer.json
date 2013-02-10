@@ -32,7 +32,7 @@
         "kriswallsmith/buzz": "0.7"
     },
     "require-dev": {
-        "rmzamora/formatter-bundle": "dev-master"
+        "sonata-project/formatter-bundle": "dev-master"
     },
     "suggest": {
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",

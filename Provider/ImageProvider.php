@@ -14,6 +14,7 @@ use Sonata\MediaBundle\Model\MediaInterface;
 use Sonata\MediaBundle\CDN\CDNInterface;
 use Sonata\MediaBundle\Generator\GeneratorInterface;
 use Sonata\MediaBundle\Thumbnail\ThumbnailInterface;
+use Sonata\MediaBundle\Metadata\MetadataBuilderInterface;
 
 use Imagine\Image\ImagineInterface;
 use Gaufrette\Filesystem;
@@ -23,18 +24,19 @@ class ImageProvider extends FileProvider
     protected $imagineAdapter;
 
     /**
-     * @param string                                           $name
-     * @param \Gaufrette\Filesystem                            $filesystem
-     * @param \Sonata\MediaBundle\CDN\CDNInterface             $cdn
-     * @param \Sonata\MediaBundle\Generator\GeneratorInterface $pathGenerator
-     * @param \Sonata\MediaBundle\Thumbnail\ThumbnailInterface $thumbnail
-     * @param array                                            $allowedExtensions
-     * @param array                                            $allowedMimeTypes
-     * @param \Imagine\Image\ImagineInterface                  $adapter
+     * @param string                                                $name
+     * @param \Gaufrette\Filesystem                                 $filesystem
+     * @param \Sonata\MediaBundle\CDN\CDNInterface                  $cdn
+     * @param \Sonata\MediaBundle\Generator\GeneratorInterface      $pathGenerator
+     * @param \Sonata\MediaBundle\Thumbnail\ThumbnailInterface      $thumbnail
+     * @param array                                                 $allowedExtensions
+     * @param array                                                 $allowedMimeTypes
+     * @param \Imagine\Image\ImagineInterface                       $adapter
+     * @param \Sonata\MediaBundle\Metadata\MetadataBuilderInterface $metadata
      */
-    public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, array $allowedExtensions = array(), array $allowedMimeTypes = array(), ImagineInterface $adapter)
+    public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, array $allowedExtensions = array(), array $allowedMimeTypes = array(), ImagineInterface $adapter, MetadataBuilderInterface $metadata = null)
     {
-        parent::__construct($name, $filesystem, $cdn, $pathGenerator, $thumbnail, $allowedExtensions, $allowedMimeTypes);
+        parent::__construct($name, $filesystem, $cdn, $pathGenerator, $thumbnail, $allowedExtensions, $allowedMimeTypes, $metadata);
 
         $this->imagineAdapter = $adapter;
     }
@@ -49,10 +51,10 @@ class ImageProvider extends FileProvider
         } else {
             $resizerFormat = $this->getFormat($format);
             if ($resizerFormat === false) {
-                throw new \RuntimeException(sprintf('The image format "%s" is not defined. 
+                throw new \RuntimeException(sprintf('The image format "%s" is not defined.
                         Is the format registered in your sonata-media configuration?', $format));
             }
-            
+
             $box = $this->resizer->getBox($media, $resizerFormat);
         }
 

@@ -12,10 +12,8 @@ namespace Sonata\MediaBundle\PHPCR;
 
 use Sonata\MediaBundle\Model\MediaManager as AbstractMediaManager;
 use Sonata\MediaBundle\Model\MediaInterface;
-use Doctrine\ODM\PHPCR\DocumentRepository;
 use Sonata\MediaBundle\Provider\Pool;
 use Sonata\DoctrinePHPCRAdminBundle\Model\ModelManager;
-
 
 class MediaManager extends AbstractMediaManager
 {
@@ -24,7 +22,7 @@ class MediaManager extends AbstractMediaManager
     protected $class;
 
     /**
-     * @param \Sonata\MediaBundle\Provider\Pool $pool
+     * @param \Sonata\MediaBundle\Provider\Pool               $pool
      * @param \Sonata\AdminBundle\Model\ModelManagerInterface $modelManager
      * @param $class
      */
@@ -38,7 +36,7 @@ class MediaManager extends AbstractMediaManager
     /**
      * Filter criteria for an identifier, phpcr-odm uses absolute paths and needs an identifier starting with a forward slash
      *
-     * @param array $criteria
+     * @param  array $criteria
      * @return array
      */
     protected function filterCriteria(array $criteria)
@@ -91,9 +89,9 @@ class MediaManager extends AbstractMediaManager
     /**
      * Updates a media
      *
-     * @param \Sonata\MediaBundle\Model\MediaInterface $media
-     * @param string $context
-     * @param string $providerName
+     * @param  \Sonata\MediaBundle\Model\MediaInterface $media
+     * @param  string                                   $context
+     * @param  string                                   $providerName
      * @return void
      */
     public function save(MediaInterface $media, $context = null, $providerName = null)
@@ -110,12 +108,10 @@ class MediaManager extends AbstractMediaManager
 
         if ($isNew) {
             $this->pool->getProvider($media->getProviderName())->prePersist($media);
+            $this->modelManager->create($media);
         } else {
             $this->pool->getProvider($media->getProviderName())->preUpdate($media);
         }
-
-        $this->dm->persist($media);
-        $this->dm->flush();
 
         if ($isNew) {
             $this->pool->getProvider($media->getProviderName())->postPersist($media);
@@ -124,23 +120,21 @@ class MediaManager extends AbstractMediaManager
         }
 
         // just in case the pool alter the media
-        $this->dm->persist($media);
-        $this->dm->flush();
+        $this->modelManager->update($media);
     }
 
     /**
      * Deletes a media
      *
-     * @param \Sonata\MediaBundle\Model\MediaInterface $media
+     * @param  \Sonata\MediaBundle\Model\MediaInterface $media
      * @return void
      */
     public function delete(MediaInterface $media)
     {
         $this->pool->preRemove($media);
-        $this->dm->remove($media);
-        $this->dm->flush();
+        $this->modelManager->delete($media);
 
         $this->pool->postRemove($media);
-        $this->dm->flush();
+        $this->modelManager->getDocumentManager()->flush();
     }
 }

@@ -12,7 +12,6 @@
 namespace Sonata\MediaBundle\Tests\Provider;
 
 use Sonata\MediaBundle\Tests\Entity\Media;
-use Sonata\MediaBundle\Model\MediaInterface;
 use Sonata\MediaBundle\Provider\VimeoProvider;
 use Sonata\MediaBundle\Thumbnail\FormatThumbnail;
 use Buzz\Browser;
@@ -43,7 +42,9 @@ class VimeoProviderTest extends \PHPUnit_Framework_TestCase
 
         $thumbnail = new FormatThumbnail('jpg');
 
-        $provider = new VimeoProvider('file', $filesystem, $cdn, $generator, $thumbnail, $browser);
+        $metadata = $this->getMock('Sonata\MediaBundle\Metadata\MetadataBuilderInterface');
+
+        $provider = new VimeoProvider('file', $filesystem, $cdn, $generator, $thumbnail, $browser, $metadata);
         $provider->setResizer($resizer);
 
         return $provider;
@@ -173,7 +174,6 @@ class VimeoProviderTest extends \PHPUnit_Framework_TestCase
         $media->setId(10);
         $media->setHeight(100);
         $media->setWidth(100);
-
 
         $properties = $provider->getHelperProperties($media, 'admin');
 

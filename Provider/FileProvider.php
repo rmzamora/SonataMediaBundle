@@ -16,6 +16,7 @@ use Gaufrette\Adapter\Local;
 use Sonata\MediaBundle\CDN\CDNInterface;
 use Sonata\MediaBundle\Generator\GeneratorInterface;
 use Sonata\MediaBundle\Thumbnail\ThumbnailInterface;
+use Sonata\MediaBundle\Metadata\MetadataBuilderInterface;
 
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
@@ -34,21 +35,25 @@ class FileProvider extends BaseProvider
 
     protected $allowedMimeTypes;
 
+    protected $metadata;
+
     /**
-     * @param string                                           $name
-     * @param \Gaufrette\Filesystem                            $filesystem
-     * @param \Sonata\MediaBundle\CDN\CDNInterface             $cdn
-     * @param \Sonata\MediaBundle\Generator\GeneratorInterface $pathGenerator
-     * @param \Sonata\MediaBundle\Thumbnail\ThumbnailInterface $thumbnail
-     * @param array                                            $allowedExtensions
-     * @param array                                            $allowedMimeTypes
+     * @param string                                                $name
+     * @param \Gaufrette\Filesystem                                 $filesystem
+     * @param \Sonata\MediaBundle\CDN\CDNInterface                  $cdn
+     * @param \Sonata\MediaBundle\Generator\GeneratorInterface      $pathGenerator
+     * @param \Sonata\MediaBundle\Thumbnail\ThumbnailInterface      $thumbnail
+     * @param array                                                 $allowedExtensions
+     * @param array                                                 $allowedMimeTypes
+     * @param \Sonata\MediaBundle\Metadata\MetadataBuilderInterface $metadata
      */
-    public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, array $allowedExtensions = array(), array $allowedMimeTypes = array())
+    public function __construct($name, Filesystem $filesystem, CDNInterface $cdn, GeneratorInterface $pathGenerator, ThumbnailInterface $thumbnail, array $allowedExtensions = array(), array $allowedMimeTypes = array(), MetadataBuilderInterface $metadata = null)
     {
         parent::__construct($name, $filesystem, $cdn, $pathGenerator, $thumbnail);
 
         $this->allowedExtensions = $allowedExtensions;
         $this->allowedMimeTypes  = $allowedMimeTypes;
+        $this->metadata = $metadata;
     }
 
     /**
@@ -177,7 +182,7 @@ class FileProvider extends BaseProvider
         if ($media->getBinaryContent() instanceof UploadedFile) {
             $media->setName($media->getName() ?: $media->getBinaryContent()->getClientOriginalName());
             $media->setMetadataValue('filename', $media->getBinaryContent()->getClientOriginalName());
-        } else if ($media->getBinaryContent() instanceof File) {
+        } elseif ($media->getBinaryContent() instanceof File) {
             $media->setName($media->getName() ?: $media->getBinaryContent()->getBasename());
             $media->setMetadataValue('filename', $media->getBinaryContent()->getBasename());
         }
@@ -268,7 +273,7 @@ class FileProvider extends BaseProvider
      * Set the file contents for an image
      *
      * @param \Sonata\MediaBundle\Model\MediaInterface $media
-     * @param string                                  $contents path to contents, defaults to MediaInterface BinaryContent
+     * @param string                                   $contents path to contents, defaults to MediaInterface BinaryContent
      *
      * @return void
      */
@@ -280,7 +285,8 @@ class FileProvider extends BaseProvider
             $contents = $media->getBinaryContent()->getRealPath();
         }
 
-        $file->setContent(file_get_contents($contents));
+        $metadata = $this->metadata ? $this->metadata->get($media, $file->getName()) : array();
+        $file->setContent(file_get_contents($contents), $metadata);
     }
 
     /**
@@ -347,7 +353,7 @@ class FileProvider extends BaseProvider
 
         if ($media->getBinaryContent() instanceof UploadedFile) {
             $fileName = $media->getBinaryContent()->getClientOriginalName();
-        } else if ($media->getBinaryContent() instanceof File) {
+        } elseif ($media->getBinaryContent() instanceof File) {
             $fileName = $media->getBinaryContent()->getFilename();
         } else {
             throw new \RuntimeException(sprintf('Invalid binary content type: %s', get_class($media->getBinaryContent())));

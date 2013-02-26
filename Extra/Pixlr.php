@@ -11,7 +11,6 @@
 
 namespace Sonata\MediaBundle\Extra;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,7 +61,7 @@ class Pixlr
         $this->templating   = $templating;
         $this->container    = $container;
 
-        $this->validFormats = array('jpg', 'png');
+        $this->validFormats = array('jpg', 'jpeg', 'png');
         $this->allowEreg    = '@http://([a-zA-Z0-9]*).pixlr.com/_temp/[0-9a-z]{24}\.[a-z]*@';
     }
 

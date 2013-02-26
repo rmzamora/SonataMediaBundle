@@ -16,7 +16,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\MediaBundle\Provider\Pool;
-use Sonata\AdminBundle\Validator\ErrorElement;
 
 class GalleryAdmin extends Admin
 {
@@ -47,12 +46,12 @@ class GalleryAdmin extends Admin
         }
 
         $formats = array();
-        foreach((array)$this->pool->getFormatNamesByContext($context) as $name => $options) {
+        foreach ((array) $this->pool->getFormatNamesByContext($context) as $name => $options) {
             $formats[$name] = $name;
         }
 
         $contexts = array();
-        foreach((array)$this->pool->getContexts() as $contextItem => $format) {
+        foreach ((array) $this->pool->getContexts() as $contextItem => $format) {
             $contexts[$contextItem] = $contextItem;
         }
 
@@ -71,6 +70,7 @@ class GalleryAdmin extends Admin
                     'inline' => 'table',
                     'sortable'  => 'position',
                     'link_parameters' => array('context' => $context),
+                    'admin_code' => 'sonata.media.admin.gallery_has_media'
                 )
             )
         ;
@@ -82,8 +82,8 @@ class GalleryAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('enabled', null, array('editable' => true))
             ->addIdentifier('name')
+            ->add('enabled', 'boolean', array('editable' => true))
             ->add('context', 'trans', array('catalogue' => 'SonataMediaBundle'))
             ->add('defaultFormat', 'trans', array('catalogue' => 'SonataMediaBundle'))
         ;

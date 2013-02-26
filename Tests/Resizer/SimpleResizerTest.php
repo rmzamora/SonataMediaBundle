@@ -26,9 +26,10 @@ class SimpleResizerTest extends \PHPUnit_Framework_TestCase
     {
         $adapter = $this->getMock('Imagine\Image\ImagineInterface');
         $media = $this->getMock('Sonata\MediaBundle\Model\MediaInterface');
+        $metadata = $this->getMock('Sonata\MediaBundle\Metadata\MetadataBuilderInterface');
         $file = $this->getMockBuilder('Gaufrette\File')->disableOriginalConstructor()->getMock();
 
-        $resizer = new SimpleResizer($adapter, 'foo');
+        $resizer = new SimpleResizer($adapter, 'foo', $metadata);
         $resizer->resize($media, $file, $file, 'bar', array());
     }
 
@@ -51,7 +52,10 @@ class SimpleResizerTest extends \PHPUnit_Framework_TestCase
 
         $out = $filesystem->get('out', true);
 
-        $resizer = new SimpleResizer($adapter, 'outbound');
+        $metadata = $this->getMock('Sonata\MediaBundle\Metadata\MetadataBuilderInterface');
+        $metadata->expects($this->once())->method('get')->will($this->returnValue(array()));
+
+        $resizer = new SimpleResizer($adapter, 'outbound', $metadata);
         $resizer->resize($media, $in, $out, 'bar', array('height' => null, 'width' => 90, 'quality' => 100));
     }
 
@@ -65,7 +69,9 @@ class SimpleResizerTest extends \PHPUnit_Framework_TestCase
         $media = $this->getMock('Sonata\MediaBundle\Model\MediaInterface');
         $media->expects($this->exactly(2))->method('getBox')->will($this->returnValue($mediaSize));
 
-        $resizer = new SimpleResizer($adapter, $mode);
+        $metadata = $this->getMock('Sonata\MediaBundle\Metadata\MetadataBuilderInterface');
+
+        $resizer = new SimpleResizer($adapter, $mode, $metadata);
 
         $box = $resizer->getBox($media, $settings);
 
@@ -75,7 +81,7 @@ class SimpleResizerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($result->getHeight(), $box->getHeight());
     }
 
-    static public function getBoxSettings()
+    public static function getBoxSettings()
     {
         return array(
             array('inset', array( 'width' => 90, 'height' => 90 ), new Box(100, 120), new Box(75, 90)),

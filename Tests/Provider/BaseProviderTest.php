@@ -36,7 +36,9 @@ class BaseProviderTest extends \PHPUnit_Framework_TestCase
 
         $thumbnail = $this->getMock('Sonata\MediaBundle\Thumbnail\ThumbnailInterface');
 
-        $provider = new TestProvider('test', $filesystem, $cdn, $generator, $thumbnail);
+        $metadata = $this->getMock('Sonata\MediaBundle\Metadata\MetadataBuilderInterface');
+
+        $provider = new TestProvider('test', $filesystem, $cdn, $generator, $thumbnail, $metadata);
 
         return $provider;
     }
@@ -77,7 +79,7 @@ class TestProvider extends BaseProvider
 {
     /**
      * @param \Sonata\MediaBundle\Model\MediaInterface $media
-     * @param string $format
+     * @param string                                   $format
      */
     public function getHelperProperties(MediaInterface $media, $format)
     {
@@ -145,8 +147,8 @@ class TestProvider extends BaseProvider
     /**
      * Generate the private path
      *
-     * @param \Sonata\MediaBundle\Model\MediaInterface $media
-     * @param string $format
+     * @param  \Sonata\MediaBundle\Model\MediaInterface $media
+     * @param  string                                   $format
      * @return string
      */
     public function generatePrivateUrl(MediaInterface $media, $format)
@@ -157,8 +159,8 @@ class TestProvider extends BaseProvider
     /**
      * Generate the public path
      *
-     * @param \Sonata\MediaBundle\Model\MediaInterface $media
-     * @param string $format
+     * @param  \Sonata\MediaBundle\Model\MediaInterface $media
+     * @param  string                                   $format
      * @return string
      */
     public function generatePublicUrl(MediaInterface $media, $format)
@@ -177,7 +179,7 @@ class TestProvider extends BaseProvider
 
     /**
      *
-     * @param \Sonata\MediaBundle\Model\MediaInterface $media
+     * @param  \Sonata\MediaBundle\Model\MediaInterface $media
      * @return void
      */
     public function preUpdate(MediaInterface $media)
@@ -186,7 +188,7 @@ class TestProvider extends BaseProvider
     }
 
     /**
-     * @param \Sonata\MediaBundle\Model\MediaInterface $media
+     * @param  \Sonata\MediaBundle\Model\MediaInterface $media
      * @return void
      */
     public function postRemove(MediaInterface $media)
@@ -195,7 +197,7 @@ class TestProvider extends BaseProvider
     }
 
     /**
-     * @param \Sonata\MediaBundle\Model\MediaInterface $media
+     * @param  \Sonata\MediaBundle\Model\MediaInterface $media
      * @return void
      */
     public function prePersist(MediaInterface $media)
@@ -211,13 +213,13 @@ class TestProvider extends BaseProvider
      * @param $mode
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    function getDownloadResponse(MediaInterface $media, $format, $mode, array $headers = array())
+    public function getDownloadResponse(MediaInterface $media, $format, $mode, array $headers = array())
     {
         // TODO: Implement getDownloadResponse() method.
     }
 
     /**
-     * @param \Sonata\MediaBundle\Model\MediaInterface $media
+     * @param  \Sonata\MediaBundle\Model\MediaInterface $media
      * @return void
      */
     protected function doTransform(MediaInterface $media)
@@ -226,23 +228,22 @@ class TestProvider extends BaseProvider
     }
 
     /**
-     * @param \Symfony\Component\Form\FormBuilder $formBuilder
+     * @param  \Symfony\Component\Form\FormBuilder $formBuilder
      * @return void
      */
-    function buildMediaType(FormBuilder $formBuilder)
+    public function buildMediaType(FormBuilder $formBuilder)
     {
         // TODO: Implement buildMediaType() method.
     }
 
     /**
-     * @param \Sonata\MediaBundle\Model\MediaInterface $media
-     * @param bool $force
+     * @param  \Sonata\MediaBundle\Model\MediaInterface $media
+     * @param  bool                                     $force
      * @return void
      */
-    function updateMetadata(MediaInterface $media, $force = false)
+    public function updateMetadata(MediaInterface $media, $force = false)
     {
         // TODO: Implement updateMetadata() method.
     }
-
 
 }

@@ -13,12 +13,11 @@ namespace Sonata\MediaBundle\Admin\PHPCR;
 
 use Sonata\MediaBundle\Admin\BaseMediaAdmin as Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 
 class MediaAdmin extends Admin
 {
     /**
-     * Path to the root node of simple pages.
+     * Path to the root node of media documents.
      *
      * @var string
      */
@@ -43,28 +42,18 @@ class MediaAdmin extends Admin
         return $query;
     }
 
-    public function generateObjectUrl($name, $object, array $parameters = array(), $absolute = false)
-    {
-        $parameters['id'] = $this->getUrlsafeIdentifier($object);
-        return $this->generateUrl($name, $parameters, $absolute);
-    }
-
-    public function getUrlsafeIdentifier($object)
-    {
-        return $this->modelManager->getUrlsafeIdentifier($object);
-    }
-
     public function id($object)
     {
         return $this->getUrlsafeIdentifier($object);
     }
 
     /**
-     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     * @param  \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
      * @return void
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+        // TODO disabled filter due to no attached service for filter types: string, checkbox
 //        $datagridMapper
 //            ->add('name')
 //            ->add('providerReference')

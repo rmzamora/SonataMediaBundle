@@ -23,7 +23,7 @@
     ],
     "require": {
         "symfony/symfony": ">=2.2,<2.3-dev",
-        "sonata-project/admin-bundle": "2.2.*@dev",
+        "rmzamora/admin-bundle": "2.2.*@dev"
         "sonata-project/notification-bundle": "2.2.*@dev",
         "sonata-project/easy-extends-bundle": "2.1.*",
         "sonata-project/doctrine-extensions": "1.*",

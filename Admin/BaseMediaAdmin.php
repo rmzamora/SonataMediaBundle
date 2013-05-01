@@ -159,7 +159,7 @@ abstract class BaseMediaAdmin extends Admin
         $menu->addChild(
             $this->trans('sidemenu.link_edit_media'),
             array('uri' => $admin->generateUrl('edit', array('id' => $id)))
-        );
+        )->setCurrent(true);
 
         $menu->addChild(
             $this->trans('sidemenu.link_media_view'),

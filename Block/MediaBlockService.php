@@ -84,13 +84,13 @@ class MediaBlockService extends BaseBlockService
     /**
      * {@inheritdoc}
      */
-    public function getDefaultSettings(OptionsResolverInterface $resolver)
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'media'    => false,
             'title'    => false,
             'context'  => false,
-            'mediaId'  => false,
+            'mediaId'  => null,
             'format'   => false,
             'template' => 'SonataMediaBundle:Block:block_media.html.twig'
         ));
@@ -190,7 +190,7 @@ class MediaBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        return $this->renderResponse($this->getTemplate(), array(
+        return $this->renderResponse($blockContext->getTemplate(), array(
             'media'     => $blockContext->getSetting('mediaId'),
             'block'     => $blockContext->getBlock(),
             'settings'  => $blockContext->getSettings()

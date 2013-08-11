@@ -2,21 +2,21 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-        	<trans-unit id="default">
+          <trans-unit id="default">
                 <source>default</source>
-                <target>default</target>
+                <target>Default</target>
             </trans-unit>
             <trans-unit id="sidemenu.link_edit_media">
                 <source>sidemenu.link_edit_media</source>
-                <target>Edycja</target>
+                <target>Redaguoti</target>
             </trans-unit>
             <trans-unit id="sidemenu.link_media_view">
                 <source>sidemenu.link_media_view</source>
-                <target>Widok</target>
+                <target>Peržiūrėti</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_media_create">
                 <source>breadcrumb.link_media_create</source>
-                <target>Utwórz</target>
+                <target>Sukurti</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_media_list">
                 <source>breadcrumb.link_media_list</source>
@@ -24,31 +24,31 @@
             </trans-unit>
             <trans-unit id="breadcrumb.link_media_edit">
                 <source>breadcrumb.link_media_edit</source>
-                <target>Edycja</target>
+                <target>Redaguoti</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_media_view">
                 <source>breadcrumb.link_media_view</source>
-                <target>Widok</target>
+                <target>Peržiūrėti</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_media_delete">
                 <source>breadcrumb.link_media_delete</source>
-                <target>Usuń</target>
+                <target>Ištrinti</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_gallery_create">
                 <source>breadcrumb.link_gallery_create</source>
-                <target>Utwórz</target>
+                <target>Sukurti</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_gallery_list">
                 <source>breadcrumb.link_gallery_list</source>
-                <target>Galerie</target>
+                <target>Galerijos</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_gallery_edit">
                 <source>breadcrumb.link_gallery_edit</source>
-                <target>Edycja</target>
+                <target>Redaguoti</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_gallery_delete">
                 <source>breadcrumb.link_gallery_delete</source>
-                <target>Usuń</target>
+                <target>Ištrinti</target>
             </trans-unit>
             <trans-unit id="media">
                 <source>media</source>
@@ -56,51 +56,51 @@
             </trans-unit>
             <trans-unit id="gallery">
                 <source>gallery</source>
-                <target>Galeria</target>
+                <target>Galerija</target>
             </trans-unit>
             <trans-unit id="title_select_provider">
                 <source>title_select_provider</source>
-                <target>Wybierz dostawcę mediów</target>
+                <target>Pasirinkite media tiekėją</target>
             </trans-unit>
             <trans-unit id="no_provider_available">
                 <source>no_provider_available</source>
-                <target>Brak dostawcy</target>
+                <target>Nėra galimo tiekėjo</target>
             </trans-unit>
             <trans-unit id="title.media_preview">
                 <source>title.media_preview</source>
-                <target>Podgląd</target>
+                <target>Peržiūra</target>
             </trans-unit>
             <trans-unit id="title.media_thumbnail">
                 <source>title.media_thumbnail</source>
-                <target>Miniaturka</target>
+                <target>Miniatiūra</target>
             </trans-unit>
             <trans-unit id="title.informations">
                 <source>title.informations</source>
-                <target>Informacje</target>
+                <target>Informacija</target>
             </trans-unit>
             <trans-unit id="label.size">
                 <source>label.size</source>
-                <target>Rozmiar</target>
+                <target>Dydis</target>
             </trans-unit>
             <trans-unit id="label.width">
                 <source>label.width</source>
-                <target>Szerokość</target>
+                <target>Plotis</target>
             </trans-unit>
             <trans-unit id="label.height">
                 <source>label.height</source>
-                <target>Wysokość</target>
+                <target>Aukštis</target>
             </trans-unit>
             <trans-unit id="label.content_type">
                 <source>label.content_type</source>
-                <target>Typ kontentu</target>
+                <target>Turinio tipas</target>
             </trans-unit>
             <trans-unit id="label.copyright">
                 <source>label.copyright</source>
-                <target>Prawa autorskie</target>
+                <target>Autorinė teisė</target>
             </trans-unit>
             <trans-unit id="label.author_name">
                 <source>label.author_name</source>
-                <target>Autor</target>
+                <target>Autorius</target>
             </trans-unit>
             <trans-unit id="label.cdn">
                 <source>label.cdn</source>
@@ -108,59 +108,59 @@
             </trans-unit>
             <trans-unit id="label.to_be_flushed">
                 <source>label.to_be_flushed</source>
-                <target>Spłukiwalny</target>
+                <target>Flushable</target>
             </trans-unit>
             <trans-unit id="label.flushed_at">
                 <source>label.flushed_at</source>
-                <target>Wyczyszczony CDN</target>
+                <target>Flushed at</target>
             </trans-unit>
             <trans-unit id="label.public_url">
                 <source>label.public_url</source>
-                <target>Publiczny URL</target>
+                <target>Viešas URL</target>
             </trans-unit>
             <trans-unit id="label.name">
                 <source>label.name</source>
-                <target>Nazwa</target>
+                <target>Pavadinimas</target>
             </trans-unit>
             <trans-unit id="label.file">
                 <source>label.file</source>
-                <target>Plik</target>
+                <target>Failas</target>
             </trans-unit>
             <trans-unit id="label.author">
                 <source>label.author</source>
-                <target>Autor</target>
+                <target>Autorius</target>
             </trans-unit>
             <trans-unit id="label.enabled">
                 <source>label.enabled</source>
-                <target>Włączony</target>
+                <target>Įjungta</target>
             </trans-unit>
             <trans-unit id="label.cdn_is_flushable">
                 <source>label.cdn_is_flushable</source>
-                <target>Wyczyszczony CDN</target>
+                <target>Flush CDN</target>
             </trans-unit>
             <trans-unit id="label.video_reference">
                 <source>label.video_reference</source>
-                <target>Zmień video</target>
+                <target>Pakeisti video</target>
             </trans-unit>
             <trans-unit id="label.description">
                 <source>label.description</source>
-                <target>Opis</target>
+                <target>Aprašymas</target>
             </trans-unit>
             <trans-unit id="title.formats">
                 <source>title.formats</source>
-                <target>Formaty</target>
+                <target>Formatai</target>
             </trans-unit>
             <trans-unit id="label.select_context">
                 <source>label.select_context</source>
-                <target>Kontekst : </target>
+                <target>Kontekstas : </target>
             </trans-unit>
             <trans-unit id="label.select_provider">
                 <source>label.select_provider</source>
-                <target>Typ : </target>
+                <target>Tipas : </target>
             </trans-unit>
             <trans-unit id="link.all_providers">
                 <source>link.all_providers</source>
-                <target>Wszystkie</target>
+                <target>Visi</target>
             </trans-unit>
             <trans-unit id="sonata.media.provider.dailymotion">
                 <source>sonata.media.provider.dailymotion</source>
@@ -176,46 +176,46 @@
             </trans-unit>
             <trans-unit id="sonata.media.provider.image">
                 <source>sonata.media.provider.image</source>
-                <target>Obrazek</target>
+                <target>Vaizdas</target>
             </trans-unit>
             <trans-unit id="sonata.media.provider.file">
                 <source>sonata.media.provider.file</source>
-                <target>Plik</target>
+                <target>Failas</target>
             </trans-unit>
             <trans-unit id="label.protected_download_url">
                 <source>label.protected_download_url</source>
-                <target>Chroniony URL</target>
+                <target>Apsaugotas URL</target>
             </trans-unit>
             <trans-unit id="description.roles_download_strategy">
                 <source>description.roles_download_strategy</source>
-                <target>Media mogą być pobrane przez użytkowników z tymi rolami : %roles%.</target>
+                <target>Media gali būti pasiekiamas turint šiuos vaidmenis : %roles%.</target>
             </trans-unit>
             <trans-unit id="label.protected_download_url_notice">
                 <source>label.protected_download_url_notice</source>
-                <target>Uwaga</target>
+                <target>Įspėjimas</target>
             </trans-unit>
             <trans-unit id="description.public_download_strategy">
                 <source>description.public_download_strategy</source>
-                <target>Media moga zostać pobrane przez wszystkich.</target>
+                <target>Media gali būti pasiekiamas visiems.</target>
             </trans-unit>
             <trans-unit id="description.forbidden_download_strategy">
                 <source>description.forbidden_download_strategy</source>
-                <target>Nikt nie może pobrać mediów.</target>
+                <target>Niekas negali pasiekti Media.</target>
             </trans-unit>
             <trans-unit id="link.test_protected_url">
                 <source>link.test_protected_url</source>
-                <target>Podgląd linku</target>
+                <target>Peržiūros nuoroda</target>
             </trans-unit>
             <trans-unit id="label.edit_with_pixlr">
                 <source>label.edit_with_pixlr</source>
-                <target>Edytuj te media poprzez Pixlr</target>
+                <target>Redaguoti su Pixlr</target>
             </trans-unit>
             <trans-unit id="label.pixlr_warning">
                 <source>label.pixlr_warning</source>
                 <target>
                     <![CDATA[
-                        <span class="label important">Ważne</span> jeśli masz zamiar wystawiać media na <strong> zewnętrzną usługę </ strong>. <br />
-                         Jeśli pracujesz nad poufnymi materiałami, proszę nie używać tej usługi.
+                        <span class="label important">Svarbu</span> jūs atskleisite media <strong>išorinei paslaugai</strong>. <br />
+                        Jeigu dirbate su konfidencialia informacija, prašome nesinaudoti šia paslauga.
                     ]]>
                 </target>
             </trans-unit>
@@ -223,8 +223,8 @@
                 <source>label.pixlr_express_editor</source>
                 <target>
                     <![CDATA[
-                        <strong style="color: white">Ekspresowy edytor</strong> <br />
-                        Prosty interfejs do szybkiej edycji
+                        <strong style="color: white">Skubus redaktorius</strong> <br />
+                        Paprasta sąsaja greitam redagavimui
                     ]]>
                 </target>
             </trans-unit>
@@ -232,26 +232,34 @@
                 <source>label.pixlr_advanced_editor</source>
                 <target>
                     <![CDATA[
-                        <strong style="color: white">Zaawansowany edytor</strong> <br />
-                        Tylko dla doświadczonych użytkowników
+                        <strong style="color: white">Pažengęs redaktorius</strong> <br />
+                        Tik pažengusiems vartotojams
                     ]]>
                 </target>
             </trans-unit>
             <trans-unit id="form.label_enabled">
                 <source>form.label_enabled</source>
-                <target>Włączony</target>
+                <target>Įjungta</target>
+            </trans-unit>
+            <trans-unit id="form.label_media">
+                <source>form.label_media</source>
+                <target>Medium</target>
+            </trans-unit>
+            <trans-unit id="form.label_position">
+                <source>form.label_position</source>
+                <target>Pozicija</target>
             </trans-unit>
             <trans-unit id="form.label_context">
                 <source>form.label_context</source>
-                <target>Kontekst</target>
+                <target>Kontekstas</target>
             </trans-unit>
             <trans-unit id="form.label_name">
                 <source>form.label_name</source>
-                <target>Nazwa</target>
+                <target>Pavadinimas</target>
             </trans-unit>
             <trans-unit id="form.label_default_format">
                 <source>form.label_default_format</source>
-                <target>Format</target>
+                <target>Formatas</target>
             </trans-unit>
             <trans-unit id="form.label_gallery_has_medias">
                 <source>form.label_gallery_has_medias</source>
@@ -259,62 +267,74 @@
             </trans-unit>
             <trans-unit id="form.label_author_name">
                 <source>form.label_author_name</source>
-                <target>Autor</target>
+                <target>Autorius</target>
             </trans-unit>
             <trans-unit id="form.label_cdn_is_flushable">
                 <source>form.label_cdn_is_flushable</source>
-                <target>Wyczyść CDN</target>
+                <target>Flush CDN</target>
             </trans-unit>
             <trans-unit id="form.label_description">
                 <source>form.label_description</source>
-                <target>Opis</target>
+                <target>Aprašymas</target>
             </trans-unit>
             <trans-unit id="form.label_copyright">
                 <source>form.label_copyright</source>
-                <target>Prawa autorskie</target>
-            </trans-unit> 
+                <target>Autorinės teisės</target>
+            </trans-unit>
             <trans-unit id="list.label_enabled">
                 <source>list.label_enabled</source>
-                <target>Włączony</target>
+                <target>Įjungta</target>
+            </trans-unit>
+            <trans-unit id="list.label_name">
+                <source>list.label_name</source>
+                <target>Pavadinimas</target>
+            </trans-unit>
+            <trans-unit id="list.label_context">
+                <source>list.label_context</source>
+                <target>Kontekstas</target>
+            </trans-unit>
+            <trans-unit id="list.label_default_format">
+                <source>list.label_default_format</source>
+                <target>Formatas</target>
             </trans-unit>
             <trans-unit id="list.label__action">
                 <source>list.label__action</source>
-                <target>Akcja</target>
+                <target>Veiksmas</target>
             </trans-unit>
             <trans-unit id="list.label_custom">
                 <source>list.label_custom</source>
-                <target>Własny</target>
+                <target>Individualizuota</target>
             </trans-unit>
             <trans-unit id="filter.label_name">
                 <source>filter.label_name</source>
-                <target>Nazwa</target>
+                <target>Pavadinimas</target>
             </trans-unit>
             <trans-unit id="filter.label_provider_reference">
                 <source>filter.label_provider_reference</source>
-                <target>Referencje dostawcy</target>
+                <target>Tiekėjo nuoroda</target>
             </trans-unit>
 
             <trans-unit id="filter.label_enabled">
                 <source>filter.label_enabled</source>
-                <target>Włączony</target>
+                <target>Įjungta</target>
             </trans-unit>
 
             <trans-unit id="filter.label_context">
                 <source>filter.label_context</source>
-                <target>Kontekst</target>
+                <target>Kontekstas</target>
             </trans-unit>
 
             <trans-unit id="filter.label_provider_name">
                 <source>filter.label_provider_name</source>
-                <target>Nazwa dostawcy</target>
+                <target>Tiekėjo pavadinimas</target>
             </trans-unit>
             <trans-unit id="form.label_binary_content">
                 <source>form.label_binary_content</source>
-                <target>Plik</target>
+                <target>Failas</target>
             </trans-unit>
             <trans-unit id="sonata_media">
                 <source>sonata_media</source>
-                <target>Biblioteka Mediów</target>
+                <target>Media biblioteka</target>
             </trans-unit>
         </body>
     </file>

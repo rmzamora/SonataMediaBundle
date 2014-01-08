@@ -32,7 +32,7 @@
             </trans-unit>
             <trans-unit id="breadcrumb.link_media_list">
                 <source>breadcrumb.link_media_list</source>
-                <target>Medias</target>
+                <target>Media</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_media_edit">
                 <source>breadcrumb.link_media_edit</source>
@@ -124,7 +124,7 @@
             </trans-unit>
             <trans-unit id="form.label_gallery_has_medias">
                 <source>form.label_gallery_has_medias</source>
-                <target>Medias</target>
+                <target>Media</target>
             </trans-unit>
             <trans-unit id="form.label_author_name">
                 <source>form.label_author_name</source>
@@ -149,6 +149,10 @@
             <trans-unit id="label.size">
                 <source>label.size</source>
                 <target>Size</target>
+            </trans-unit>
+            <trans-unit id="label.length">
+                <source>label.length</source>
+                <target>Length</target>
             </trans-unit>
             <trans-unit id="label.width">
                 <source>label.width</source>

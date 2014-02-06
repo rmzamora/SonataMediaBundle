@@ -34,13 +34,15 @@
     "require-dev": {
         "rmzamora/doctrine-orm-admin-bundle": "~2.3",
         "rmzamora/formatter-bundle": "~2.3",
-        "amazonwebservices/aws-sdk-for-php": "1.5.*"
+        "amazonwebservices/aws-sdk-for-php": "1.5.*",
+        "rmzamora/seo-bundle": "~1.1"
     },
     "suggest": {
         "rmzamora/doctrine-orm-admin-bundle": "~2.3",
         "liip/imagine-bundle": "0.9.*",
         "amazonwebservices/aws-sdk-for-php": "1.5.*",
-        "rackspace/php-opencloud": "1.6.*"
+        "tilleuls/ckeditor-sonata-mediabundle": "~1.0",
+        "rackspace/php-opencloud": "~1.6",
     },
     "autoload": {
         "psr-0": { "Sonata\\MediaBundle": "" }

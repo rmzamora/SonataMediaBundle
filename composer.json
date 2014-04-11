@@ -35,7 +35,6 @@
         "nelmio/api-doc-bundle": "~2.4"
     },
     "require-dev": {
-    	"rmzamora/rest-bundle": "~1.2",
         "rmzamora/doctrine-orm-admin-bundle": "~2.3",
         "rmzamora/formatter-bundle": "~2.3",
         "amazonwebservices/aws-sdk-for-php": "1.5.*",

@@ -7,6 +7,21 @@ A [BC BREAK] means the update will break the project for many reasons:
 * new dependencies
 * class refactoring
 
+### 2014-04-11
+
+* [BC BREAK] Removed admin show action, now merged with admin edit action. As a result, controller method, route and template no longer exist.
+
+### 2014-03-27
+
+* [BC BREAK] Switched GalleryBlockService from nivo-gallery (no longer maintained) to Bootstrap3 carousel
+
+    If you overrode the GalleryBlockService or its template, the settings have changed:
+
+    * ``animSpeed``, ``directionNav`` and ``progressBar`` have been removed
+    * ``wrap`` has been added
+
+    Moreover, the nivogallery jquery plugin has been removed.
+
 ### 2014-01-15
 
 * Updated twig template ``SonataMediaBundle:Gallery:view.html.twig``

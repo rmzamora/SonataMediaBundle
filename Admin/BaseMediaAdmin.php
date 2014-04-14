@@ -44,7 +44,7 @@ abstract class BaseMediaAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('custom', 'string', array('template' => 'SonataMediaBundle:MediaAdmin:list_custom.html.twig'))
+            ->add('custom', 'string', array('template' => 'SonataMediaBundle:MediaAdmin:list_custom.html.twig', 'label' => 'Media'))
             ->add('enabled', 'boolean', array('editable' => true))
             ->add('_action', 'actions', array(
                 'actions' => array(

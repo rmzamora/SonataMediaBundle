@@ -32,7 +32,8 @@
         "kriswallsmith/buzz": "0.*",
         "rmzamora/rest-bundle": "~1.3",
         "jms/serializer-bundle": "~0.11",
-        "nelmio/api-doc-bundle": "~2.4"
+        "nelmio/api-doc-bundle": "~2.4",
+        "sonata-project/intl-bundle": "~2.2"
     },
     "require-dev": {
         "rmzamora/doctrine-orm-admin-bundle": "~2.3",

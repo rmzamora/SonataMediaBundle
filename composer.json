@@ -36,19 +36,19 @@
         "sonata-project/intl-bundle": "~2.2"
     },
     "require-dev": {
+         "rmzamora/doctrine-orm-admin-bundle": "~2.3",
         "rmzamora/doctrine-orm-admin-bundle": "~2.3",
         "rmzamora/formatter-bundle": "~2.3",
+        "sonata-project/core-bundle": "~2.2@dev",
         "amazonwebservices/aws-sdk-for-php": "1.5.*",
         "rmzamora/seo-bundle": "~1.1",
         "doctrine/mongodb-odm": "~1.0@dev",
         "sonata-project/doctrine-phpcr-admin-bundle": "~1.0"
     },
-    "suggest": {
-        "rmzamora/doctrine-orm-admin-bundle": "~2.3",
+    "suggest": {    
         "liip/imagine-bundle": "0.9.*",
         "amazonwebservices/aws-sdk-for-php": "1.5.*",        
         "rackspace/php-opencloud": "~1.6",
-        "rmzamora/seo-bundle": "~1.1",
         "tilleuls/ckeditor-sonata-mediabundle": "~1.0"
     },
     "autoload": {

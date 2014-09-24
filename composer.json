@@ -44,7 +44,7 @@
         "amazonwebservices/aws-sdk-for-php": "1.5.*",
         "rmzamora/seo-bundle": "~1.1",
         "doctrine/mongodb-odm": "~1.0@dev",
-        "sonata-project/doctrine-phpcr-admin-bundle": "~1.0"
+        "rmzamora/doctrine-phpcr-admin-bundle": "~1.0"
     },
     "suggest": {    
         "liip/imagine-bundle": "0.9.*",

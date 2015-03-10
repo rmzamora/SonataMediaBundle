@@ -86,7 +86,7 @@ class MediaAdminController extends Controller
 
         if ($request->get('category')) {
             $contextInCategory = $this->container->get('sonata.classification.manager.category')->findBy(array(
-                'id'      => (int) $this->getRequest()->get('category'),
+                'id'      => (int) $request->get('category'),
                 'context' => $context
             ));
 

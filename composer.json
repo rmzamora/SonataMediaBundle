@@ -24,8 +24,8 @@
     "require": {
         "symfony/symfony": "~2.4",
         "sonata-project/core-bundle": "~2.2",
-        "rmzamora/notification-bundle": "~2.3",
-        "rmzamora/classification-bundle": "~2.3",
+        "rmzamora/notification-bundle": "2.4.*",
+        "rmzamora/classification-bundle": "2.4.*",
         "sonata-project/easy-extends-bundle": "~2.1",
         "sonata-project/doctrine-extensions": "~1.0",
         "knplabs/gaufrette": ">=0.1.6",
@@ -37,9 +37,8 @@
         "sonata-project/intl-bundle": "~2.2"
     },
     "require-dev": {
-        "rmzamora/doctrine-orm-admin-bundle": "~2.3",
-        "rmzamora/doctrine-orm-admin-bundle": "~2.3",
-        "rmzamora/formatter-bundle": "~2.3",
+        "rmzamora/doctrine-orm-admin-bundle": "2.4.*",
+        "rmzamora/formatter-bundle": "2.4.*",
         "sonata-project/core-bundle": "~2.2@dev",
         "sonata-project/datagrid-bundle": "~2.2@dev",
         "aws/aws-sdk-php": "~2.7",
@@ -48,7 +47,7 @@
         "jackalope/jackalope-doctrine-dbal": "~1.1"
     },
     "suggest": {
-        "rmzamora/doctrine-orm-admin-bundle": "~2.3",
+        "rmzamora/doctrine-orm-admin-bundle": "2.4.*",
         "liip/imagine-bundle": "0.9.*",
         "rackspace/php-opencloud": "~1.6",
         "tilleuls/ckeditor-sonata-mediabundle": "~1.0"
@@ -58,7 +57,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-2.3": "2.3.x-dev"
+            "dev-2.4": "2.4.x-dev"
         }
     }
 }

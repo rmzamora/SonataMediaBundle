@@ -33,6 +33,7 @@
         "kriswallsmith/buzz": "0.*",
         "friendsofsymfony/rest-bundle": "~1.1",
         "jms/serializer-bundle": "~0.11",
+        "jms/serializer": "~0.13",
         "nelmio/api-doc-bundle": "~2.4",
         "sonata-project/intl-bundle": "~2.2"
     },
@@ -52,6 +53,8 @@
         "rackspace/php-opencloud": "~1.6",
         "tilleuls/ckeditor-sonata-mediabundle": "~1.0"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": { "Sonata\\MediaBundle\\": "" }
     },

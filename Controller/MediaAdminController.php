@@ -33,7 +33,7 @@ class MediaAdminController extends Controller
                 'providers'     => $this->get('sonata.media.pool')->getProvidersByContext($request->get('context', $this->get('sonata.media.pool')->getDefaultContext())),
                 'base_template' => $this->getBaseTemplate(),
                 'admin'         => $this->admin,
-                'action'        => 'create'
+                'action'        => 'create',
             ));
         }
 
@@ -87,7 +87,7 @@ class MediaAdminController extends Controller
         if ($request->get('category')) {
             $contextInCategory = $this->container->get('sonata.classification.manager.category')->findBy(array(
                 'id'      => (int) $request->get('category'),
-                'context' => $context
+                'context' => $context,
             ));
 
             if (!empty($contextInCategory)) {

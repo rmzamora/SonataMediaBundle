@@ -28,23 +28,22 @@
         "rmzamora/classification-bundle": "2.4.*",
         "sonata-project/easy-extends-bundle": "~2.1",
         "sonata-project/doctrine-extensions": "~1.0",
-        "knplabs/gaufrette": ">=0.1.6",
-        "imagine/Imagine": "*@stable",
-        "kriswallsmith/buzz": "0.*",
+        "knplabs/gaufrette": "^0.1.6",
+        "imagine/imagine": "~0.3",
+        "kriswallsmith/buzz": "~0.6",
         "friendsofsymfony/rest-bundle": "~1.1",
-        "jms/serializer-bundle": "~0.11",
-        "jms/serializer": "~0.13",
+        "jms/serializer-bundle": "~0.11|~1.0",
         "nelmio/api-doc-bundle": "~2.4",
         "sonata-project/intl-bundle": "~2.2"
     },
     "require-dev": {
         "rmzamora/doctrine-orm-admin-bundle": "2.4.*",
         "rmzamora/formatter-bundle": "2.4.*",
-        "sonata-project/core-bundle": "~2.2@dev",
-        "sonata-project/datagrid-bundle": "~2.2@dev",        
+        "sonata-project/core-bundle": "~2.3,>=2.3.1",
+        "sonata-project/datagrid-bundle": "~2.2",
         "rmzamora/seo-bundle": "2.0.*",
         "aws/aws-sdk-php": "~2.7",
-        "doctrine/mongodb-odm": "~1.0@dev",
+        "doctrine/mongodb-odm": "~1.0",
         "jackalope/jackalope-doctrine-dbal": "~1.1",
         "symfony/phpunit-bridge": "~2.7|~3.0",
         "fabpot/php-cs-fixer": "~0.1|~1.0"
@@ -54,6 +53,9 @@
         "liip/imagine-bundle": "0.9.*",
         "rackspace/php-opencloud": "~1.6",
         "tilleuls/ckeditor-sonata-mediabundle": "~1.0"
+    },
+    "conflict": {
+        "jms/serializer": "<0.13"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

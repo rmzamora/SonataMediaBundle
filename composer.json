@@ -54,7 +54,7 @@
         "tilleuls/ckeditor-sonata-mediabundle": "~1.0"
     },
     "conflict": {
-        "jms/serializer": "<0.13",
+        "jms/serializer": "<0.13"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

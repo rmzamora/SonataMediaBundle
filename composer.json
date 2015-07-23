@@ -45,8 +45,7 @@
         "aws/aws-sdk-php": "~2.7",
         "doctrine/mongodb-odm": "~1.0",
         "jackalope/jackalope-doctrine-dbal": "~1.1",
-        "symfony/phpunit-bridge": "~2.7|~3.0",
-        "fabpot/php-cs-fixer": "~0.1|~1.0"
+        "symfony/phpunit-bridge": "~2.7|~3.0"
     },
     "suggest": {
         "rmzamora/doctrine-orm-admin-bundle": "2.4.*",
@@ -55,7 +54,7 @@
         "tilleuls/ckeditor-sonata-mediabundle": "~1.0"
     },
     "conflict": {
-        "jms/serializer": "<0.13"
+        "jms/serializer": "<0.13",
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

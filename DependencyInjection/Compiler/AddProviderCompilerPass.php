@@ -34,8 +34,8 @@ class AddProviderCompilerPass implements CompilerPassInterface
 
         foreach ($container->findTaggedServiceIds('sonata.media.provider') as $id => $attributes) {
             $container->getDefinition($id)->addMethodCall('addFormat', array('admin', array(
-                'quality'       => 90,
-                'width'         => 200,
+                'quality'       => 100,
+                'width'         => 300,
                 'format'        => 'jpg',
                 'height'        => false,
                 'constraint'    => true,

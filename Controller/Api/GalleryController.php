@@ -25,6 +25,8 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Class GalleryController.
@@ -118,6 +120,7 @@ class GalleryController
      * Retrieves a specific gallery.
      *
      * @ApiDoc(
+     *
      *  requirements={
      *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="gallery id"}
      *  },

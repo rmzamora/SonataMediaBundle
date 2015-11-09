@@ -12,7 +12,6 @@
 namespace Sonata\MediaBundle\Controller\Api;
 
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use FOS\RestBundle\View\View;
 use JMS\Serializer\SerializationContext;
 use Sonata\DatagridBundle\Pager\PagerInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
@@ -26,6 +25,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Route;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Class MediaController.

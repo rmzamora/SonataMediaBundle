@@ -11,6 +11,8 @@
 
 namespace Sonata\MediaBundle\Model;
 
+use Imagine\Image\Box;
+
 interface MediaInterface
 {
     const STATUS_OK          = 1;
@@ -365,12 +367,12 @@ interface MediaInterface
     public function getBox();
 
     /**
-     * @param array $galleryHasMedias
+     * @param GalleryHasMediaInterface[] $galleryHasMedias
      */
     public function setGalleryHasMedias($galleryHasMedias);
 
     /**
-     * @return array
+     * @return GalleryHasMediaInterface[]
      */
     public function getGalleryHasMedias();
 

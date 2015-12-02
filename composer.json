@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "symfony/symfony": "~2.4",
+        "symfony/symfony": "~2.3|~3.0",
         "rmzamora/core-bundle": "2.5.0.*",
         "rmzamora/notification-bundle": "2.5.0.*",
         "rmzamora/classification-bundle": "2.5.0.*",
@@ -33,8 +33,7 @@
         "imagine/imagine": "~0.3",
         "kriswallsmith/buzz": "~0.6",
         "friendsofsymfony/rest-bundle": "~1.1",
-        "jms/serializer-bundle": "~1.1",
-        "nelmio/api-doc-bundle": "~2.4"
+        "jms/serializer-bundle": "~1.1"
     },
     "require-dev": {
         "rmzamora/doctrine-orm-admin-bundle": "2.5.0.*",
@@ -51,7 +50,7 @@
     },
     "suggest": {
         "rmzamora/doctrine-orm-admin-bundle": "2.5.0.*",
-        "liip/imagine-bundle": "0.9.*",
+        "liip/imagine-bundle": "~0.9",
         "rackspace/php-opencloud": "~1.6",
         "tilleuls/ckeditor-sonata-mediabundle": "~1.0"
     },

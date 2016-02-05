@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "symfony/symfony": "~2.3|~3.0",
+        "symfony/framework-bundle": "~2.3|~3.0",
         "rmzamora/core-bundle": "2.5.0.*",
         "rmzamora/notification-bundle": "2.5.0.*",
         "rmzamora/classification-bundle": "2.5.0.*",

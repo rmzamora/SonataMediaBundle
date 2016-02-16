@@ -45,8 +45,8 @@
         "doctrine/mongodb-odm": "~1.0",
         "jackalope/jackalope-doctrine-dbal": "~1.1",
         "symfony/phpunit-bridge": "~2.7|~3.0",
-        "friendsofsymfony/rest-bundle": "~1.1",
-        "nelmio/api-doc-bundle": "~2.4"
+        "friendsofsymfony/rest-bundle": "^1.7.4|~2.0",
+        "nelmio/api-doc-bundle": "~2.11"
     },
     "suggest": {
         "rmzamora/doctrine-orm-admin-bundle": "2.5.0.*",

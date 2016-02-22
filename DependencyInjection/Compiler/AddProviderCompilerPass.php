@@ -32,14 +32,10 @@ class AddProviderCompilerPass implements CompilerPassInterface
         $this->attachArguments($container, $settings);
         $this->attachProviders($container);
 
+        $format = $container->getParameter('sonata.media.admin_format');
+
         foreach ($container->findTaggedServiceIds('sonata.media.provider') as $id => $attributes) {
-            $container->getDefinition($id)->addMethodCall('addFormat', array('admin', array(
-                'quality'       => 100,
-                'width'         => 300,
-                'format'        => 'jpg',
-                'height'        => false,
-                'constraint'    => true,
-            )));
+            $container->getDefinition($id)->addMethodCall('addFormat', array('admin', $format));
         }
     }
 

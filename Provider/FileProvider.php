@@ -13,8 +13,8 @@ namespace Sonata\MediaBundle\Provider;
 
 use Gaufrette\Filesystem;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\CoreBundle\Model\Metadata;
-use Sonata\CoreBundle\Validator\ErrorElement;
 use Sonata\MediaBundle\CDN\CDNInterface;
 use Sonata\MediaBundle\Extra\ApiMediaFile;
 use Sonata\MediaBundle\Generator\GeneratorInterface;
@@ -177,7 +177,11 @@ class FileProvider extends BaseProvider
     }
 
     /**
-     * @param MediaInterface $media
+     * @throws \RuntimeException
+     *
+     * @param \Sonata\MediaBundle\Model\MediaInterface $media
+     *
+     * @return
      */
     protected function fixBinaryContent(MediaInterface $media)
     {

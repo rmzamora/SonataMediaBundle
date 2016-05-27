@@ -8,5 +8,8 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 
 #}
-
-<img {% for name, value in options %}{{name}}="{{value}}" {% endfor %} />
+{% if media.getProviderName() != 'sonata.media.provider.image' and media.getProviderName() != 'sonata.media.provider.file' %}
+{% media media, 'admin'  with {'height': 100} %}
+{% else %}
+<img {% for name, value in options %}{{name}}="{{ value }}" {% endfor %} />
+{% endif %}

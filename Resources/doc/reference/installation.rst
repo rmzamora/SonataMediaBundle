@@ -4,136 +4,117 @@ Installation
 Base bundles
 ------------
 
-This bundle is mainly dependant of:
+This bundle is mainly dependant of the ``SonataAdminBundle`` and the ``SonataDoctrineORMAdminBundle`` or ``SonataDoctrineMongoDBAdminBundle``. So be sure you have installed those two bundles before starting:
 
-* Classification: https://sonata-project.org/bundles/classification
-* Core: https://sonata-project.org/bundles/core
-* Intl: https://sonata-project.org/bundles/intl
-
-This bundle has optional dependancies of:
-
- * Admin: https://sonata-project.org/bundles/admin
- * DoctrineOrm: https://sonata-project.org/bundles/doctrine-orm-admin
- * MongoAdmin: https://sonata-project.org/bundles/mongo-admin
-
-So be sure you have installed those bundles before starting
+ * http://sonata-project.org/bundles/admin/master/doc/reference/installation.html
+ * http://sonata-project.org/bundles/doctrine-orm-admin/master/doc/reference/installation.html
+ * http://sonata-project.org/bundles/mongo-admin/master/doc/reference/installation.html
 
 Installation
 ------------
 
 Retrieve the bundle with composer:
 
-.. code-block:: bash
+.. code-block:: sh
 
-    $ php composer.phar require sonata-project/media-bundle --no-update
+    php composer.phar require sonata-project/media-bundle --no-update
 
-Register these bundles in your AppKernel:
+
+Register the new bundle into your AppKernel:
 
 .. code-block:: php
 
   <?php
   // app/AppKernel.php
-
   public function registerBundles()
   {
       return array(
           // ...
+          new Sonata\CoreBundle\SonataCoreBundle(),
+          new Sonata\IntlBundle\SonataIntlBundle(),
           new Sonata\MediaBundle\SonataMediaBundle(),
           new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-          new Sonata\IntlBundle\SonataIntlBundle(),
-
-          // You need to add this dependency to make media functional
-          new JMS\SerializerBundle\JMSSerializerBundle(),
           // ...
       );
   }
 
 Next, add the correct routing files:
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    gallery:
+        resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
+        prefix: /media/gallery
 
-        # app/config/routing.yml
-
-        gallery:
-            resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
-            prefix: /media/gallery
-
-        media:
-            resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
-            prefix: /media
+    media:
+        resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
+        prefix: /media
 
 
 Then you must configure the interaction with the orm and add the mediaBundles settings:
 
 Doctrine ORM:
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # app/config/config.yml
 
-        # app/config/config.yml
+    doctrine:
+        orm:
+            entity_managers:
+                default:
+                    mappings:
+                        SonataMediaBundle: ~
 
-        doctrine:
-            orm:
-                entity_managers:
-                    default:
-                        mappings:
-                            SonataMediaBundle: ~
-
-            dbal:
-                types:
-                    json: Sonata\Doctrine\Types\JsonType
+        dbal:
+            types:
+                json: Sonata\Doctrine\Types\JsonType
 
 Doctrine PHPCR:
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # app/config/config.yml
 
-        # app/config/config.yml
+    doctrine_phpcr:
+        odm:
+            auto_mapping: true
+            mappings:
+                SonataMediaBundle:
+                    prefix: Sonata\MediaBundle\PHPCR
 
-        doctrine_phpcr:
-            odm:
-                auto_mapping: true
-                mappings:
-                    SonataMediaBundle:
-                        prefix: Sonata\MediaBundle\PHPCR
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # app/config/config.yml
 
-        # app/config/config.yml
+    sonata_media:
+        # if you don't use default namespace configuration
+        #class:
+        #    media: MyVendor\MediaBundle\Entity\Media
+        #    gallery: MyVendor\MediaBundle\Entity\Gallery
+        #    gallery_has_media: MyVendor\MediaBundle\Entity\GalleryHasMedia
+        default_context: default
+        db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
+        contexts:
+            default:  # the default context is mandatory
+                providers:
+                    - sonata.media.provider.dailymotion
+                    - sonata.media.provider.youtube
+                    - sonata.media.provider.image
+                    - sonata.media.provider.file
 
-        sonata_media:
-            # if you don't use default namespace configuration
-            #class:
-            #    media: MyVendor\MediaBundle\Entity\Media
-            #    gallery: MyVendor\MediaBundle\Entity\Gallery
-            #    gallery_has_media: MyVendor\MediaBundle\Entity\GalleryHasMedia
-            db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr it is mandatory to choose one here
-            default_context: default # you need to set a context
-            contexts:
-                default:  # the default context is mandatory
-                    providers:
-                        - sonata.media.provider.dailymotion
-                        - sonata.media.provider.youtube
-                        - sonata.media.provider.image
-                        - sonata.media.provider.file
-                        - sonata.media.provider.vimeo
+                formats:
+                    small: { width: 100 , quality: 70}
+                    big:   { width: 500 , quality: 70}
 
-                    formats:
-                        small: { width: 100 , quality: 70}
-                        big:   { width: 500 , quality: 70}
+        cdn:
+            server:
+                path: /uploads/media # http://media.sonata-project.org/
 
-            cdn:
-                server:
-                    path: /uploads/media # http://media.sonata-project.org/
-
-            filesystem:
-                local:
-                    directory:  "%kernel.root_dir%/../web/uploads/media"
-                    create:     false
+        filesystem:
+            local:
+                directory:  "%kernel.root_dir%/../web/uploads/media"
+                create:     false
 
 .. note::
 
@@ -143,16 +124,14 @@ Doctrine PHPCR:
 Also, you can determine the resizer to use; the default value is
 ``sonata.media.resizer.simple`` but you can change it to ``sonata.media.resizer.square``
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # app/config/config.yml
 
-        # app/config/config.yml
-
-        sonata_media:
-            providers:
-                image:
-                    resizer: sonata.media.resizer.square
+    sonata_media:
+        providers:
+            image:
+                resizer: sonata.media.resizer.square
 
 .. note::
 
@@ -196,33 +175,30 @@ Now that your module is generated, you can register it
         );
     }
 
-.. configuration-block::
+    # app/config/config.yml
+      doctrine:
+          orm:
+              entity_managers:
+                  default:
+                      mappings:
+                          ApplicationSonataMediaBundle: ~
+                          SonataMediaBundle: ~
+                          # add your own bundles here
 
-    .. code-block:: yaml
-
-        # app/config/config.yml
-
-        doctrine:
-            orm:
-                entity_managers:
-                    default:
-                        mappings:
-                            ApplicationSonataMediaBundle: ~
-                            SonataMediaBundle: ~
 
 Now, you can build up your database:
 
-.. code-block:: bash
+.. code-block:: sh
 
-    $ app/console doctrine:schema:[create|update]
+    app/console doctrine:schema:[create|update]
 
 
 If they are not already created, you need to add specific folder to allow uploads from users:
 
-.. code-block:: bash
+.. code-block:: sh
 
-    $ mkdir web/uploads
-    $ mkdir web/uploads/media
-    $ chmod -R 0777 web/uploads
+    mkdir web/uploads
+    mkdir web/uploads/media
+    chmod -R 0777 web/uploads
 
 Then you can visit your admin dashboard on http://my-server/admin/dashboard

@@ -18,7 +18,7 @@ use Sonata\MediaBundle\Thumbnail\FormatThumbnail;
 
 class ImageProviderTest extends \PHPUnit_Framework_TestCase
 {
-    public function getProvider($allowedExtensions = array(), $allowedMimeTypes = array())
+    public function getProvider()
     {
         $resizer = $this->getMock('Sonata\MediaBundle\Resizer\ResizerInterface');
         $resizer->expects($this->any())->method('resize')->will($this->returnValue(true));
@@ -48,7 +48,7 @@ class ImageProviderTest extends \PHPUnit_Framework_TestCase
 
         $metadata = $this->getMock('Sonata\MediaBundle\Metadata\MetadataBuilderInterface');
 
-        $provider = new ImageProvider('file', $filesystem, $cdn, $generator, $thumbnail, $allowedExtensions, $allowedMimeTypes, $adapter, $metadata);
+        $provider = new ImageProvider('file', $filesystem, $cdn, $generator, $thumbnail, array(), array(), $adapter, $metadata);
         $provider->setResizer($resizer);
 
         return $provider;
@@ -64,14 +64,14 @@ class ImageProviderTest extends \PHPUnit_Framework_TestCase
         $media->setId(1023456);
         $media->setContext('default');
 
-        $this->assertSame('default/0011/24/ASDASDAS.png', $provider->getReferenceImage($media));
+        $this->assertEquals('default/0011/24/ASDASDAS.png', $provider->getReferenceImage($media));
 
-        $this->assertSame('default/0011/24', $provider->generatePath($media));
-        $this->assertSame('/uploads/media/default/0011/24/thumb_1023456_big.png', $provider->generatePublicUrl($media, 'big'));
-        $this->assertSame('/uploads/media/default/0011/24/ASDASDAS.png', $provider->generatePublicUrl($media, 'reference'));
+        $this->assertEquals('default/0011/24', $provider->generatePath($media));
+        $this->assertEquals('/uploads/media/default/0011/24/thumb_1023456_big.png', $provider->generatePublicUrl($media, 'big'));
+        $this->assertEquals('/uploads/media/default/0011/24/ASDASDAS.png', $provider->generatePublicUrl($media, 'reference'));
 
-        $this->assertSame('default/0011/24/ASDASDAS.png', $provider->generatePrivateUrl($media, 'reference'));
-        $this->assertSame('default/0011/24/thumb_1023456_big.png', $provider->generatePrivateUrl($media, 'big'));
+        $this->assertEquals('default/0011/24/ASDASDAS.png', $provider->generatePrivateUrl($media, 'reference'));
+        $this->assertEquals('default/0011/24/thumb_1023456_big.png', $provider->generatePrivateUrl($media, 'big'));
     }
 
     public function testHelperProperies()
@@ -89,14 +89,14 @@ class ImageProviderTest extends \PHPUnit_Framework_TestCase
         $properties = $provider->getHelperProperties($media, 'admin');
 
         $this->assertInternalType('array', $properties);
-        $this->assertSame('test.png', $properties['title']);
-        $this->assertSame(100, $properties['width']);
+        $this->assertEquals('test.png', $properties['title']);
+        $this->assertEquals(100, $properties['width']);
 
         $properties = $provider->getHelperProperties($media, 'admin', array(
             'width' => 150,
         ));
 
-        $this->assertSame(150, $properties['width']);
+        $this->assertEquals(150, $properties['width']);
     }
 
     public function testThumbnail()
@@ -117,7 +117,7 @@ class ImageProviderTest extends \PHPUnit_Framework_TestCase
 
         $provider->generateThumbnails($media);
 
-        $this->assertSame('default/0011/24/thumb_1023456_big.png', $provider->generatePrivateUrl($media, 'big'));
+        $this->assertEquals('default/0011/24/thumb_1023456_big.png', $provider->generatePrivateUrl($media, 'big'));
     }
 
     public function testEvent()
@@ -136,25 +136,12 @@ class ImageProviderTest extends \PHPUnit_Framework_TestCase
         $provider->transform($media);
         $provider->prePersist($media);
 
-        $this->assertSame('logo.png', $media->getName(), '::getName() return the file name');
+        $this->assertEquals('logo.png', $media->getName(), '::getName() return the file name');
         $this->assertNotNull($media->getProviderReference(), '::getProviderReference() is set');
 
         // post persit the media
         $provider->postPersist($media);
 
         $provider->postRemove($media);
-    }
-
-    public function testTransformFormatNotSupported()
-    {
-        $provider = $this->getProvider();
-
-        $file = new \Symfony\Component\HttpFoundation\File\File(realpath(__DIR__.'/../fixtures/logo.png'));
-
-        $media = new Media();
-        $media->setBinaryContent($file);
-
-        $this->assertNull($provider->transform($media));
-        $this->assertNull($media->getWidth(), 'Width staid null');
     }
 }
